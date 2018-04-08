@@ -50,6 +50,7 @@ public class AuthApplication {
 			client.setRefreshTokenValiditySeconds(432000);
 			client.setGrantTypes(Arrays.asList("password", "authorization_code", "refresh_token"));
 			client.setScopes(Arrays.asList("read", "write"));
+			client.setAutoApprovedScopes(Arrays.asList("read", "write"));
 			client.setResources(Arrays.asList("82dd7eb8-b2b9-4664-83cd-f7815d0651dd"));
 			client.setRoles(Arrays.asList(adminRole));
 			client.setActive(true);

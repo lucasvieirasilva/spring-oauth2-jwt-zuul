@@ -26,6 +26,10 @@ public class Client extends AbstractAuditionGuidKeyEntity {
 	@ElementCollection
 	@CollectionTable(name = "Client_Scopes")
 	private List<String> scopes = new ArrayList<String>();
+	
+	@ElementCollection
+	@CollectionTable(name = "Client_AutoApprovedScopes")
+	private List<String> autoApprovedScopes = new ArrayList<String>();
 
 	@ElementCollection
 	@CollectionTable(name = "Client_GrantTypes")
@@ -103,5 +107,11 @@ public class Client extends AbstractAuditionGuidKeyEntity {
 	}
 	public void setScopes(final List<String> scopes) {
 		this.scopes = scopes;
+	}
+	public List<String> getAutoApprovedScopes() {
+		return autoApprovedScopes;
+	}
+	public void setAutoApprovedScopes(List<String> autoApprovedScopes) {
+		this.autoApprovedScopes = autoApprovedScopes;
 	}
 }

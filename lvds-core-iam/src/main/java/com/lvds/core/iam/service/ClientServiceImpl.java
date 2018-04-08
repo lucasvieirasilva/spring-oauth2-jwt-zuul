@@ -47,6 +47,7 @@ public class ClientServiceImpl implements ClientService {
 			details.setAuthorities(authorities);
 			details.setAccessTokenValiditySeconds(client.getAccessTokenValiditySeconds());
 			details.setRefreshTokenValiditySeconds(client.getRefreshTokenValiditySeconds());
+			details.setAutoApproveScopes(client.getAutoApprovedScopes());
 
 			return details;
 		}).orElseThrow(() -> new ClientRegistrationException("O Cliente não está cadastrado!"));
