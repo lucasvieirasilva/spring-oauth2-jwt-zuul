@@ -1,0 +1,39 @@
+logging:
+  level:
+    org.springframework.security: DEBUG
+    org.springframework.cloud: DEBUG
+    org.springframework.web: WARN
+
+server:
+  port: 8080
+
+spring:
+  aop:
+    proxy-target-class: true
+
+zuul:  
+  routes:    
+    startpage:
+      path: /**
+      url: http://localhost:8081
+    api:      
+      path: /api/**
+      url: http://localhost:9001/resource
+    logout:
+      path: /logout
+      url: http://localhost:9999/uaa
+
+security:
+  sessions: never
+  basic:
+    enabled: false
+  oauth2:    
+    client:
+      accessTokenUri: http://localhost:9999/uaa/oauth/token
+      userAuthorizationUri: http://localhost:9999/uaa/oauth/authorize
+      clientId: 24b1d5e9-cb4f-4f18-937f-6ae2bff31aa1
+      clientSecret: 8462898e-ee33-4d3e-af8a-d45b9a956037
+    resource:
+      user-info-uri: http://localhost:8080/api/me
+      jwt:
+        key-value: lvds@2018

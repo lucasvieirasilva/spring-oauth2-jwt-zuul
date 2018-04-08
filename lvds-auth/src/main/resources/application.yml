@@ -1,0 +1,17 @@
+server:
+  port: 9999
+  context-path: /uaa
+ 
+spring:
+  datasource:
+    url: jdbc:mysql://192.168.18.10:3306/lvds_admin
+    username: root
+    password: Sample@2018
+  social:
+    facebook:
+      app-id: 1849491478624138
+      app-secret: 0566d44388382386ee073cc7388f3807  
+    
+app:
+  oauth2:
+    sigingkey: lvds@2018
