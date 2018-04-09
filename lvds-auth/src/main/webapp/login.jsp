@@ -1,60 +1,59 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Login</title>
-<link rel="stylesheet"
-	href="webjars/bootstrap/3.0.3/css/bootstrap.min.css" />
-<link rel="stylesheet"
-	href="webjars/bootstrap/3.0.3/css/bootstrap.min.css" />
-<link rel="stylesheet"
-	href="lib/components-font-awesome/css/font-awesome.min.css" />
-<link rel="stylesheet" href="fonts/open-sans/open-sans.css" />
-</head>
-<body>
-	<div class="row">
-		<div class="col-lg-4">
-			<c:if test="${not empty param.authentication_error}">
-				<h1>Woops!</h1>
+	<!DOCTYPE html>
+	<html lang="en">
 
-				<p class="error">Your login attempt was not successful.</p>
-			</c:if>
-			<c:if test="${not empty param.authorization_error}">
-				<h1>Woops!</h1>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Login</title>
+		<link rel="stylesheet" href="lib/components-font-awesome/css/fontawesome-all.min.css" />
+		<link rel="stylesheet" href="fonts/open-sans/open-sans.css" />
+		<link rel="stylesheet" href="styles/style.css" />
+	</head>
 
-				<p class="error">You are not permitted to access that resource.</p>
-			</c:if>
-			<form action="<c:url value="/login"/>" method="post" role="form">
+	<body>
+		<div class="wrapper">
 
-				<div class="form-group">
-					<label for="username">Username</label> <input type="text"
-						class="form-control" name='username' autocomplete="off" required />
-				</div>
+			<div class="login">
+				<p class="title">Log in</p>
+				<form action="<c:url value="/signin/facebook"/>" method="POST">
+					<input type="hidden" name="scope" value="public_profile,email" />
+					<button class="social-login social-login-facebook">
+						Continue with Facebook
+					</button>
+				</form>
 
-				<div class="form-group">
-					<label for="password">Password</label> <input type="password"
-						class="form-control" name='password' autocomplete="off" required />
-				</div>
+				<p class="text-center">Or</p>
 
-				<button type="submit" class="btn btn-default">
-					<i class="fa fa-sign-in"></i> <span>Login</span>
-				</button>
+				<form action="<c:url value="/login"/>" method="post" role="form">
+					<c:if test="${not empty param.authentication_error}">
+						<h4>Woops!</h4>
+						<p class="error">Your login attempt was not successful.</p>
+					</c:if>
+					<c:if test="${not empty param.authorization_error}">
+						<h4>Woops!</h4>
+						<p class="error">You are not permitted to access that resource.</p>
+					</c:if>
 
-				<input type="hidden" name="${_csrf.parameterName}"
-					value="${_csrf.token}" />
-			</form>
+					<input type="text" name='username' required placeholder="Username" autofocus/>
+					<i class="fas fa-user"></i>
 
-			<form action="<c:url value="/signin/facebook"/>" method="POST">
-				<input type="hidden" name="scope" value="public_profile,email" /> <input
-					type="submit" value="Login using Facebook" />
-			</form>
+					<input type="password" name='password' required placeholder="Password" />
+					<i class="fas fa-key"></i>
+
+					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+
+					<button type="submit">
+						<i class="spinner"></i>
+						<span class="state">Log in</span>
+					</button>
+				</form>
+			</div>
 		</div>
-	</div>
 
-	<script src="webjars/jquery/1.9.0/jquery.min.js"></script>
-	<script src="webjars/bootstrap/3.0.3/js/bootstrap.min.js"></script>
-</body>
-</html>
+		<script src="lib/jquery/dist/jquery.min.js"></script>
+		<script src="scripts/app.js"></script>
+	</body>
+
+	</html>

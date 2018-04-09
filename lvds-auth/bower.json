@@ -1,0 +1,7 @@
+{
+  "name": "AuthApp",
+  "dependencies": {
+    "components-font-awesome": "^5.0.6",
+    "jquery": "^3.3.1"
+  }
+}
