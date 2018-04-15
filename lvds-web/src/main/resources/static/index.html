@@ -7,7 +7,26 @@
 	rel="stylesheet">
 </head>
 
-<body>
-	<h1>Hello World</h1>
+<body ng-app="myApp">
+	<div ng-controller="mainController as main">
+		<h1>Hello {{ main.userInfo.details.decodedDetails.displayName }}</h1>
+	</div>
+
+	<script src="https://unpkg.com/angular@1.6.0/angular.min.js"></script>
+	<script>
+		var app = angular.module('myApp', []);
+
+		app.controller('mainController', [ "$scope", "$http", function($scope, $http) {
+			var main = this;
+
+			this.getUserInfo = function() {
+				$http.get('/api/me').then(function (response){
+					main.userInfo = response.data;
+				});
+			}
+			
+			this.getUserInfo();
+		} ]);
+	</script>
 </body>
 </html>
